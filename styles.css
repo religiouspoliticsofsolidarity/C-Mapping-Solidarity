@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Fixed background container */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    transform: scale(1);
+}
+
+.background-image.active {
+    opacity: 1;
+    animation: zoomIn 8s ease-out forwards;
+}
+
+.background-image.zooming {
+    animation: zoomIn 8s ease-out forwards;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.15);
+    }
+}
+
+/* Content wrapper for scrolling */
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+/* Text sections */
+.text-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+/* Floating text box */
+.text-box {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    padding: 50px 60px;
+    border-radius: 12px;
+    max-width: 800px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.text-box.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.text-box p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #2c2c2c;
+    text-align: justify;
+}
+
+/* Spacer at the end */
+.spacer {
+    height: 50vh;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .text-box {
+        padding: 30px 25px;
+        max-width: 90%;
+    }
+
+    .text-box p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-box {
+        padding: 25px 20px;
+    }
+
+    .text-box p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
